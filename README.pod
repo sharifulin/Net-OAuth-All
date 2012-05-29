@@ -128,88 +128,85 @@ Net::OAuth::All - a wrapper round the OAuth protocol of all versions(1.0, 1.0A, 
 
 At this moment module suppoted Consumer implementation of OAuth 1.0, 1.0A and 2.0 versions.
 	
-=haed2 CONFIGURATION
+=head2 CONFIGURATION
 	
-FOR ALL OAUTH VERSIONS
+=head3 FOR ALL OAUTH VERSIONS
 
-		- module_version
-			Is optional param. Is OAuth version, may be '1.0','1.0A' or '2.0'. Module has auto detection of this param according to service provider params.
-		
-		- signature_method
-			Is optional param, HMAC-SHA1 by default. Suppoted PLAINTEXT, HMAC-SHA1 and RSA-SHA1.
-		
-		- signature_key_file
-			Is required param for RSA-SHA1 signatures. Is path to *.pem file
-		
-		- extra_params
-			Is optional HASH reference param, but may be required by provider.
-			
-		- request_token_url
-			Is required param. URL for get request token
-			
-		- authorization_url
-			Is required param. URL for authorization on service provider
-			
-		- access_token_url
-			Is required param. URL for get access token
-		
-		
-		FOR OAUTH 1.0 and 1.0A
-		
-			- consumer_key
-				Is required param. Is issued by provider
-			
-			- consumer_secret
-				Is required param. Is issued by provider
-			
-			- callback
-				Is optional param. 
-		
-		FOR OAUTH 2.0
-		
-			- type
-				Is required param. Is issued by provider. At this moment module has implementation of 'web_server' type only.
-			
-			- client_id
-				Is required param. Is issued by provider
-			
-			- client_secret
-				Is optional param. Is issued by provider
-			
-			- redirect_uri
-				Is optional param. 
-			
-			
-		PARAMS FROM PROVIDER
-			
-			You receives this params from service provider after request or on callback.
-			
-			- token
-				Is for OAUTH 1.0 and 1.0A
-			
-			- token_secret
-				Is for OAUTH 1.0 and 1.0A
-			
-			- verifier
-				Is param for OAUTH 1.0A. Needs for get access token
-			
-			- code
-				Is param for OAUTH 2.0. Needs for get access token
-			
-		
-	SIGNATURE METHODS
+	- module_version
+		Is optional param. Is OAuth version, may be '1.0','1.0A' or '2.0'. Module has auto detection of this param according to service provider params.
+
+	- signature_method
+		Is optional param, HMAC-SHA1 by default. Suppoted PLAINTEXT, HMAC-SHA1 and RSA-SHA1.
+
+	- signature_key_file
+		Is required param for RSA-SHA1 signatures. Is path to *.pem file
+
+	- extra_params
+		Is optional HASH reference param, but may be required by provider.
 	
-		The following signature methods are supported:
-		
-		- PLAINTEXT
-		- HMAC-SHA1
-		- RSA-SHA1
+	- request_token_url
+		Is required param. URL for get request token
 	
-	RSA-SHA1 SIGNATURES
-		
-		To use RSA-SHA1 signatures, pass -signature_key_file param to configuration.
+	- authorization_url
+		Is required param. URL for authorization on service provider
 	
-	METHODS
+	- access_token_url
+		Is required param. URL for get access token
+
+=head3 FOR OAUTH 1.0 and 1.0A
+
+	- consumer_key
+		Is required param. Is issued by provider
+
+	- consumer_secret
+		Is required param. Is issued by provider
+
+	- callback
+		Is optional param. 
+		
+=head3 FOR OAUTH 2.0
+
+	- type
+		Is required param. Is issued by provider. At this moment module has implementation of 'web_server' type only.
+	
+	- client_id
+		Is required param. Is issued by provider
+	
+	- client_secret
+		Is optional param. Is issued by provider
+	
+	- redirect_uri
+		Is optional param. 
+
+=head3 PARAMS FROM PROVIDER
+	
+	You receives this params from service provider after request or on callback.
+	
+	- token
+		Is for OAUTH 1.0 and 1.0A
+	
+	- token_secret
+		Is for OAUTH 1.0 and 1.0A
+	
+	- verifier
+		Is param for OAUTH 1.0A. Needs for get access token
+	
+	- code
+		Is param for OAUTH 2.0. Needs for get access token
+		
+=head3 SIGNATURE METHODS
+
+The following signature methods are supported:
+	
+	- PLAINTEXT
+	- HMAC-SHA1
+	- RSA-SHA1
+
+=head3 RSA-SHA1 SIGNATURES
+	
+To use RSA-SHA1 signatures, pass -signature_key_file param to configuration.
+	
+=head3 METHODS
 	
 	new(%config)
 		
