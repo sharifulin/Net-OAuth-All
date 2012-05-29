@@ -1,14 +1,15 @@
 package Net::OAuth::All;
-
-use warnings;
 use strict;
-use Carp 'croak';
-use Encode;
+use warnings;
+
 use URI;
 use URI::Escape;
+
+use Encode;
+use Carp 'croak';
 use Net::OAuth::All::Config;
 
-our $VERSION = '0.7';
+our $VERSION = '0.8';
 
 use constant OAUTH_PREFIX => 'oauth_';
 
@@ -281,6 +282,18 @@ sub url   {
 	my $self = shift;
 	$self->{$self->{'current_request_type'}."_url"};
 }
+
+sub url_with_extra {
+	my $self  = shift;
+	my $url   = $self->url;
+	
+	my $extra = $self->extra;
+	my $params = join '&', map { "$_=$extra->{$_}" } keys %$extra;
+	$url .= $url =~ /\?/ ? "&$params" : "?$params" if $params;
+	
+	$url;
+}
+
 sub signature {
 	my ($self, $value) = @_;
 	$self->{'signature'} = $value and return $self if defined $value;
@@ -324,7 +337,6 @@ sub escape {
 sub unescape { uri_unescape(shift) }
 
 our $tt = [0..9, 'a'..'z', 'A'..'Z'];
-
-sub gen_str { join '', map {$tt->[rand @$tt]} 1..16 }
+sub gen_str { join '', map {$tt->[rand @$tt]} 1..32 }
 
 1;
