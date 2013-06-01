@@ -5,7 +5,7 @@ use warnings;
 use utf8;
 use lib qw/lib/;
 
-use Test::More tests => 78;
+use Test::More;
 use Mojo::ByteStream 'b';
 use Data::Dumper;
 
@@ -380,8 +380,4 @@ is(
 	, "to HEADER 2.0"
 );
 
-
-
-
-
-
+done_testing;
